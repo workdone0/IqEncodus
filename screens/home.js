@@ -13,13 +13,36 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import ProductCard from '../components/productCard';
 
-const subCategory = ['Mobile', 'Laptops', 'Tablets', 'PC'];
-
+const subCategory = ['Mobile', 'Laptop', 'Tablet', 'PC'];
+const products = [
+  {
+    name: 'Apple iPhone 12 Mini',
+    price: '3000',
+    description:
+      'Rated IP68 (maximum depth of 6 meters up to 30 minutes) under IEC standard 60529',
+    category: 'Mobile',
+  },
+  {
+    name: 'Microsoft Surface Book',
+    price: '6000',
+    description:
+      'Rated IP68 (maximum depth of 6 meters up to 30 minutes) under IEC standard 60529',
+    category: 'Laptop',
+  },
+  {
+    name: 'Samsung S6 Lite',
+    price: '400',
+    description:
+      'Rated IP68 (maximum depth of 6 meters up to 30 minutes) under IEC standard 60529',
+    category: 'Tablet',
+  },
+];
 class Home extends Component {
   constructor() {
     super();
     this.state = {
       selectedCat: '',
+      applyFilter: false,
     };
   }
   render() {
@@ -197,19 +220,34 @@ class Home extends Component {
               backgroundColor: '#558C8C',
               alignItems: 'center',
               justifyContent: 'center',
+            }}
+            onPress={() => {
+              this.setState({applyFilter: !this.state.applyFilter});
             }}>
             <Text
               style={{
                 fontSize: 20,
                 color: '#ffffff',
               }}>
-              Apply Filters
+              {this.state.applyFilter ? 'Reset Filters' : 'Apply Filters'}
             </Text>
           </TouchableOpacity>
         </View>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products.map((product) => {
+          if (this.state.applyFilter) {
+            if (this.state.selectedCat != '') {
+              if (
+                product.category.toLowerCase() ==
+                this.state.selectedCat.toLowerCase()
+              ) {
+                return <ProductCard product={product} />;
+              } else {
+                return null;
+              }
+            }
+          }
+          return <ProductCard product={product} />;
+        })}
       </ScrollView>
     );
   }

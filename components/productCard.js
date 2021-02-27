@@ -4,6 +4,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 class ProductCard extends Component {
   render() {
+    if (this.props.product == null) {
+      return null;
+    }
+    const product = this.props.product;
     return (
       <View style={{paddingHorizontal: 10, paddingVertical: 20}}>
         <View style={{flexDirection: 'row'}}>
@@ -30,7 +34,7 @@ class ProductCard extends Component {
                   borderTopEndRadius: 15,
                   paddingHorizontal: 10,
                 }}>
-                <Text>$50</Text>
+                <Text>${product.price}</Text>
               </View>
               <View
                 style={{
@@ -43,7 +47,7 @@ class ProductCard extends Component {
                   borderWidth: 1,
                   paddingHorizontal: 10,
                 }}>
-                <Text style={{color: '#ffffff'}}>VIP</Text>
+                <Text style={{color: '#ffffff'}}>{product.category}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -55,14 +59,9 @@ class ProductCard extends Component {
               padding: 10,
             }}>
             <Text style={{fontSize: 20, fontWeight: '700', color: '#558C8C'}}>
-              Product Name
+              {product.name}
             </Text>
-            <Text style={{fontSize: 15}}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi.
-            </Text>
+            <Text style={{fontSize: 15}}>{product.description}</Text>
           </View>
         </View>
         <View>
