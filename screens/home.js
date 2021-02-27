@@ -16,6 +16,7 @@ import ProductCard from '../components/productCard';
 const subCategory = ['Mobile', 'Laptop', 'Tablet', 'PC'];
 const products = [
   {
+    id: 1,
     name: 'Apple iPhone 12 Mini',
     price: '3000',
     description:
@@ -23,6 +24,7 @@ const products = [
     category: 'Mobile',
   },
   {
+    id: 2,
     name: 'Microsoft Surface Book',
     price: '6000',
     description:
@@ -30,6 +32,7 @@ const products = [
     category: 'Laptop',
   },
   {
+    id: 3,
     name: 'Samsung S6 Lite',
     price: '400',
     description:
@@ -246,7 +249,7 @@ class Home extends Component {
               }
             }
           }
-          return <ProductCard product={product} />;
+          return <ProductCard key={product.id} product={product} />;
         })}
       </ScrollView>
     );
