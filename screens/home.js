@@ -13,7 +13,15 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import ProductCard from '../components/productCard';
 
+const subCategory = ['Mobile', 'Laptops', 'Tablets', 'PC'];
+
 class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedCat: '',
+    };
+  }
   render() {
     return (
       <ScrollView>
@@ -149,7 +157,7 @@ class Home extends Component {
             marginTop: 5,
           }}>
           <Text style={{fontSize: 20, color: '#ffffff'}}>
-            Display results for : category name
+            Display results for : {this.state.selectedCat}
           </Text>
         </View>
 
@@ -157,71 +165,28 @@ class Home extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={{height: 100, paddingTop: 10}}>
-          <TouchableOpacity
-            style={{
-              width: 100,
-              borderWidth: 1,
-              alignItems: 'center',
-              margin: 5,
-              borderRadius: 5,
-              height: 40,
-              justifyContent: 'center',
-              backgroundColor: '#74c69d',
-            }}>
-            <Text style={{fontSize: 15, color: '#ffffff'}}>SubCategory</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              width: 100,
-              borderWidth: 1,
-              alignItems: 'center',
-              margin: 5,
-              borderRadius: 5,
-              height: 40,
-              justifyContent: 'center',
-              backgroundColor: '#74c69d',
-            }}>
-            <Text style={{fontSize: 15, color: '#ffffff'}}>SubCategory</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              width: 100,
-              borderWidth: 1,
-              alignItems: 'center',
-              margin: 5,
-              borderRadius: 5,
-              height: 40,
-              justifyContent: 'center',
-              backgroundColor: '#74c69d',
-            }}>
-            <Text style={{fontSize: 15, color: '#ffffff'}}>SubCategory</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              width: 100,
-              borderWidth: 1,
-              alignItems: 'center',
-              margin: 5,
-              borderRadius: 5,
-              height: 40,
-              justifyContent: 'center',
-              backgroundColor: '#74c69d',
-            }}>
-            <Text style={{fontSize: 15, color: '#ffffff'}}>SubCategory</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              width: 100,
-              borderWidth: 1,
-              alignItems: 'center',
-              margin: 5,
-              borderRadius: 5,
-              height: 40,
-              justifyContent: 'center',
-              backgroundColor: '#74c69d',
-            }}>
-            <Text style={{fontSize: 15, color: '#ffffff'}}>SubCategory</Text>
-          </TouchableOpacity>
+          {subCategory.map((subCat) => {
+            return (
+              <TouchableOpacity
+                style={{
+                  width: 100,
+                  borderWidth: 1,
+                  alignItems: 'center',
+                  margin: 5,
+                  borderRadius: 5,
+                  height: 40,
+                  justifyContent: 'center',
+                  backgroundColor: '#74c69d',
+                }}
+                onPress={() =>
+                  this.setState({
+                    selectedCat: subCat,
+                  })
+                }>
+                <Text style={{fontSize: 15, color: '#ffffff'}}>{subCat}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
 
         <View>
